@@ -9,7 +9,7 @@
 import Foundation
 
 protocol BookcaseManagerDelegate {
-    func didUpdateBookcase(_ bookcaseManager: BookcaseManager, books: [Book])
+    func didUpdateBookcase(_ bookcaseManager: BookcaseManager, books: [Book]?)
     func didFailWithError(error: Error)
 }
 
@@ -17,10 +17,12 @@ struct BookcaseManager {
     
     var delegate: BookcaseManagerDelegate?
 
-    let requestUrl = "https://api.storytel.net/search?query=harry"
+    private var requestUrl = "https://api.storytel.net/search?query=harry"
 
-    func fetchBookcaseInfo(key: String) {
-        
+    mutating func fetchBookcaseInfo(nextPageToken: String?) {
+        if let token = nextPageToken {
+            requestUrl.append("&page=\(token)")
+        }
         performRequest(with: requestUrl)
     }
     
@@ -38,8 +40,8 @@ struct BookcaseManager {
                 }
                 
                 if let safeData = data {
-                    if let book = self.parseJSON(safeData){
-                        self.delegate?.didUpdateBookcase(self, books: book)
+                    if let books = self.parseJSON(safeData){
+                        self.delegate?.didUpdateBookcase(self, books: books)
                     }
                 }
             }
@@ -55,11 +57,11 @@ struct BookcaseManager {
             var books = [Book]()
             decodedData.items.forEach { (item) in
                 let title = item.title
-                let author = item.authors.map{$0.name}.reduce("By: "){$0+$1}
-                let narrator = item.narrators.map{$0.name}.reduce("With: "){$0+$1}
+                let author = item.authors.map{$0.name}.joined(separator: ", ")
+                let narrator = item.narrators.map{$0.name}.joined(separator: ", ")
                 let coverUrl = item.cover.url
-                
-                let book = Book(title: title, author: author, narrator: narrator, coverUrl: coverUrl, nextPageToken: decodedData.nextPageToken)
+                let nextPageToken = decodedData.nextPageToken
+                let book = Book(title: title, author: author, narrator: narrator, coverUrl: coverUrl, nextPageToken: nextPageToken)
                 books.append(book)
             }
             return books

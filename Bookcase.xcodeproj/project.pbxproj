@@ -21,6 +21,7 @@
 		4B0C8024245A1C36002BE7CF /* BookcaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8023245A1C36002BE7CF /* BookcaseManager.swift */; };
 		4B0C8026245A2631002BE7CF /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8025245A2631002BE7CF /* BookData.swift */; };
 		4B0C802E245B515A002BE7CF /* BookcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C802D245B515A002BE7CF /* BookcaseView.swift */; };
+		4BCEAD32245E13B00082870C /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEAD31245E13B00082870C /* SpinnerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		4B0C8023245A1C36002BE7CF /* BookcaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseManager.swift; sourceTree = "<group>"; };
 		4B0C8025245A2631002BE7CF /* BookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		4B0C802D245B515A002BE7CF /* BookcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseView.swift; sourceTree = "<group>"; };
+		4BCEAD31245E13B00082870C /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				4B0C802D245B515A002BE7CF /* BookcaseView.swift */,
 				4B0C801B2459EC11002BE7CF /* BookcaseHeaderView.swift */,
 				4B0C80182459B6F1002BE7CF /* BookcaseCell.swift */,
+				4BCEAD31245E13B00082870C /* SpinnerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				4B0C7FE224597317002BE7CF /* AppDelegate.swift in Sources */,
 				4B0C802E245B515A002BE7CF /* BookcaseView.swift in Sources */,
 				4B0C801C2459EC11002BE7CF /* BookcaseHeaderView.swift in Sources */,
+				4BCEAD32245E13B00082870C /* SpinnerView.swift in Sources */,
 				4B0C7FE424597317002BE7CF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
