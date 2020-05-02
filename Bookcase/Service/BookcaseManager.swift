@@ -55,8 +55,8 @@ struct BookcaseManager {
             var books = [Book]()
             decodedData.items.forEach { (item) in
                 let title = item.title
-                let author = item.authors.map{$0.name}.reduce(""){$0+$1}
-                let narrator = item.narrators.map{$0.name}.reduce(""){$0+$1}
+                let author = item.authors.map{$0.name}.reduce("By: "){$0+$1}
+                let narrator = item.narrators.map{$0.name}.reduce("With: "){$0+$1}
                 let coverUrl = item.cover.url
                 
                 let book = Book(title: title, author: author, narrator: narrator, coverUrl: coverUrl, nextPageToken: decodedData.nextPageToken)

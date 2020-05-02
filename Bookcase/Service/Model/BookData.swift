@@ -25,7 +25,7 @@ struct Item: Codable {
     }
 }
 
-// MARK: - Language
+// MARK: - Common
 struct Common: Codable {
     let id, name: String
 }
