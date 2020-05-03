@@ -16,6 +16,7 @@ class BookcaseHeaderView: UIView {
         title.numberOfLines = 1
         title.textAlignment = .center
         title.font = .boldSystemFont(ofSize: 30.0)
+        title.textColor = .white
         return title
     }()
     
@@ -26,6 +27,14 @@ class BookcaseHeaderView: UIView {
         corver.clipsToBounds = true
         corver.backgroundColor = .lightGray
         return corver
+    }()
+    
+    private let blurView: UIVisualEffectView = {
+        let blurView = UIVisualEffectView()
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.effect = UIBlurEffect.init(style: UIBlurEffect.Style.systemMaterialDark)
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return blurView
     }()
     
     override init(frame: CGRect) {
@@ -39,10 +48,6 @@ class BookcaseHeaderView: UIView {
     }
     
     private func configureSubview() {
-        let darkBlur = UIBlurEffect(style: UIBlurEffect.Style.systemMaterial)
-        let blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame = cover.bounds
-        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         cover.addSubview(blurView)
         self.addSubview(cover)
         self.addSubview(title)
@@ -59,6 +64,11 @@ class BookcaseHeaderView: UIView {
             title.centerYAnchor.constraint(equalTo: centerYAnchor),
             title.leadingAnchor.constraint(equalTo: leadingAnchor),
             title.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            blurView.topAnchor.constraint(equalTo: cover.topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: cover.bottomAnchor),
+            blurView.trailingAnchor.constraint(equalTo: cover.trailingAnchor),
+            blurView.leadingAnchor.constraint(equalTo: cover.leadingAnchor),
         ])
     }
     

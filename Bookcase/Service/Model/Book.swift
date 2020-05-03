@@ -13,5 +13,6 @@ struct Book: Decodable {
     let author: String
     let narrator: String
     let coverUrl: String
+    let query: String
     let nextPageToken: String
 }

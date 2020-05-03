@@ -8,17 +8,11 @@
 
 import UIKit
 
-class SpinnerView: UITableViewCell {
+class SpinnerCell: UITableViewCell {
     
     static let reuseIdentifier = "SpinnerCell"
 
     let spinner = UIActivityIndicatorView()
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        configureContents()
-//        autoLayout()
-//    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,9 +26,8 @@ class SpinnerView: UITableViewCell {
     
     private func configureContents() {
         spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.startAnimating()
-        self.backgroundColor = UIColor(white: 0, alpha: 0.7)
-        self.addSubview(spinner)
+        contentView.backgroundColor = .clear
+        contentView.addSubview(spinner)
     }
     
     private func autoLayout() {

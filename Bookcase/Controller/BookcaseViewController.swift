@@ -14,9 +14,9 @@ class BookcaseViewController: UIViewController {
     private var manager = BookcaseManager()
     private let bookcaseView = BookcaseView()
     private let headerView = BookcaseHeaderView()
-    private let spinner = SpinnerView()
     private var nextPageToken: String?
-    
+    private var isLoading = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -32,13 +32,15 @@ class BookcaseViewController: UIViewController {
     
     private func addSubViews() {
         view = bookcaseView
-        bookcaseView.tableView.tableFooterView = spinner
         view.addSubview(headerView)
         
     }
     
     private func fetchBookcaseInfo() {
-        manager.fetchBookcaseInfo(nextPageToken: nextPageToken)
+        if !isLoading {
+            isLoading = true
+            manager.fetchBookcaseInfo(nextPageToken: nextPageToken)
+        }
     }
 }
 
@@ -51,11 +53,18 @@ extension BookcaseViewController: UITableViewDelegate {
 
 extension BookcaseViewController: UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = books.count - 1
+        if !isLoading && indexPath.row == lastElement || lastElement < 0{
+            fetchBookcaseInfo()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 120
         } else {
-            return 55
+            return isLoading ? 80:0
         }
     }
     
@@ -81,7 +90,8 @@ extension BookcaseViewController: UITableViewDataSource {
             cell.narrator.text = books[indexPath.row].narrator
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: SpinnerView.reuseIdentifier, for: indexPath) as! SpinnerView
+            let cell = tableView.dequeueReusableCell(withIdentifier: SpinnerCell.reuseIdentifier, for: indexPath) as! SpinnerCell
+            isLoading ? cell.spinner.startAnimating() : cell.spinner.stopAnimating()
             return cell
         }
         
@@ -91,18 +101,22 @@ extension BookcaseViewController: UITableViewDataSource {
 extension BookcaseViewController: BookcaseManagerDelegate {
     
     func didFailWithError(error: Error) {
-        print(error.localizedDescription)
+        DispatchQueue.main.async {
+            self.isLoading = false
+            self.showAlert(withMessage: error.localizedDescription)
+        }
     }
     
     func didUpdateBookcase(_ bookcaseManager: BookcaseManager, books: [Book]?) {
         
         if let books = books {
-            self.books += books
             DispatchQueue.main.async {
+                self.books += books
                 self.bookcaseView.tableView.reloadData()
                 self.headerView.cover.load(url: URL(string: books[books.endIndex-1].coverUrl)!)
-                self.headerView.title.text = books[books.endIndex-1].title
-                self.nextPageToken = books[books.startIndex].nextPageToken
+                self.headerView.title.text = "Query : \(books[books.startIndex].query)"
+                self.nextPageToken = books[books.endIndex-1].nextPageToken
+                self.isLoading = false
             }
         }
         

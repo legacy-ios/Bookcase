@@ -8,13 +8,12 @@
 
 import Foundation
 
-// MARK: - BookData
 struct BookData: Codable {
+    let query: String
     let nextPageToken: String
     let items: [Item]
 }
 
-// MARK: - Item
 struct Item: Codable {
     let title: String
     let authors, narrators: [Common]
@@ -25,12 +24,10 @@ struct Item: Codable {
     }
 }
 
-// MARK: - Common
 struct Common: Codable {
     let id, name: String
 }
 
-// MARK: - Cover
 struct Cover: Codable {
     let url: String
     let width, height: Int

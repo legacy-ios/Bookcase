@@ -16,12 +16,13 @@
 		4B0C80042459731A002BE7CF /* BookcaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C80032459731A002BE7CF /* BookcaseUITests.swift */; };
 		4B0C80192459B6F1002BE7CF /* BookcaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C80182459B6F1002BE7CF /* BookcaseCell.swift */; };
 		4B0C801C2459EC11002BE7CF /* BookcaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C801B2459EC11002BE7CF /* BookcaseHeaderView.swift */; };
-		4B0C801F2459FAB2002BE7CF /* UIImageView+Extesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C801E2459FAB2002BE7CF /* UIImageView+Extesions.swift */; };
+		4B0C801F2459FAB2002BE7CF /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C801E2459FAB2002BE7CF /* UIImageView+Extensions.swift */; };
 		4B0C8021245A17B2002BE7CF /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8020245A17B2002BE7CF /* Book.swift */; };
 		4B0C8024245A1C36002BE7CF /* BookcaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8023245A1C36002BE7CF /* BookcaseManager.swift */; };
 		4B0C8026245A2631002BE7CF /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8025245A2631002BE7CF /* BookData.swift */; };
 		4B0C802E245B515A002BE7CF /* BookcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C802D245B515A002BE7CF /* BookcaseView.swift */; };
-		4BCEAD32245E13B00082870C /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEAD31245E13B00082870C /* SpinnerView.swift */; };
+		4B4E4830245F2073000F1FBD /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4E482F245F2073000F1FBD /* ViewController+Extension.swift */; };
+		4BCEAD32245E13B00082870C /* SpinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEAD31245E13B00082870C /* SpinnerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,12 +58,13 @@
 		4B0C80052459731A002BE7CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B0C80182459B6F1002BE7CF /* BookcaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseCell.swift; sourceTree = "<group>"; };
 		4B0C801B2459EC11002BE7CF /* BookcaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseHeaderView.swift; sourceTree = "<group>"; };
-		4B0C801E2459FAB2002BE7CF /* UIImageView+Extesions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extesions.swift"; sourceTree = "<group>"; };
+		4B0C801E2459FAB2002BE7CF /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		4B0C8020245A17B2002BE7CF /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		4B0C8023245A1C36002BE7CF /* BookcaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseManager.swift; sourceTree = "<group>"; };
 		4B0C8025245A2631002BE7CF /* BookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		4B0C802D245B515A002BE7CF /* BookcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseView.swift; sourceTree = "<group>"; };
-		4BCEAD31245E13B00082870C /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
+		4B4E482F245F2073000F1FBD /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		4BCEAD31245E13B00082870C /* SpinnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +165,7 @@
 				4B0C802D245B515A002BE7CF /* BookcaseView.swift */,
 				4B0C801B2459EC11002BE7CF /* BookcaseHeaderView.swift */,
 				4B0C80182459B6F1002BE7CF /* BookcaseCell.swift */,
-				4BCEAD31245E13B00082870C /* SpinnerView.swift */,
+				4BCEAD31245E13B00082870C /* SpinnerCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,7 +193,8 @@
 		4B0C801D2459FA84002BE7CF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				4B0C801E2459FAB2002BE7CF /* UIImageView+Extesions.swift */,
+				4B0C801E2459FAB2002BE7CF /* UIImageView+Extensions.swift */,
+				4B4E482F245F2073000F1FBD /* ViewController+Extension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -336,15 +339,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B0C80192459B6F1002BE7CF /* BookcaseCell.swift in Sources */,
-				4B0C801F2459FAB2002BE7CF /* UIImageView+Extesions.swift in Sources */,
+				4B0C801F2459FAB2002BE7CF /* UIImageView+Extensions.swift in Sources */,
 				4B0C8024245A1C36002BE7CF /* BookcaseManager.swift in Sources */,
 				4B0C8021245A17B2002BE7CF /* Book.swift in Sources */,
 				4B0C7FE624597317002BE7CF /* BookcaseViewController.swift in Sources */,
 				4B0C8026245A2631002BE7CF /* BookData.swift in Sources */,
 				4B0C7FE224597317002BE7CF /* AppDelegate.swift in Sources */,
 				4B0C802E245B515A002BE7CF /* BookcaseView.swift in Sources */,
+				4B4E4830245F2073000F1FBD /* ViewController+Extension.swift in Sources */,
 				4B0C801C2459EC11002BE7CF /* BookcaseHeaderView.swift in Sources */,
-				4BCEAD32245E13B00082870C /* SpinnerView.swift in Sources */,
+				4BCEAD32245E13B00082870C /* SpinnerCell.swift in Sources */,
 				4B0C7FE424597317002BE7CF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,6 +517,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G7Y922S93U;
 				INFOPLIST_FILE = "Bookcase/Suporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -531,6 +536,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G7Y922S93U;
 				INFOPLIST_FILE = "Bookcase/Suporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

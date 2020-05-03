@@ -62,22 +62,22 @@ class BookcaseCell: UITableViewCell {
     
         let margin: CGFloat = 10
         NSLayoutConstraint.activate([
-            cover.topAnchor.constraint(equalTo: self.topAnchor, constant: margin),
-            cover.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: margin),
+            cover.topAnchor.constraint(equalTo: topAnchor, constant: margin),
+            cover.leadingAnchor.constraint(equalTo: leadingAnchor, constant: margin),
             cover.widthAnchor.constraint(equalToConstant: 100),
             cover.heightAnchor.constraint(equalToConstant: 100),
             
-            title.topAnchor.constraint(equalTo: self.topAnchor, constant: margin+5),
+            title.topAnchor.constraint(equalTo: topAnchor, constant: margin+5),
             title.leadingAnchor.constraint(equalTo: cover.trailingAnchor, constant: margin),
-            title.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            title.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             author.topAnchor.constraint(equalTo: title.bottomAnchor, constant: margin),
             author.leadingAnchor.constraint(equalTo: cover.trailingAnchor, constant: margin),
-            author.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            author.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             narrator.topAnchor.constraint(equalTo: author.bottomAnchor, constant: margin-5),
             narrator.leadingAnchor.constraint(equalTo: cover.trailingAnchor, constant: margin),
-            narrator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            narrator.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
     

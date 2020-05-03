@@ -16,7 +16,7 @@ protocol BookcaseManagerDelegate {
 struct BookcaseManager {
     
     var delegate: BookcaseManagerDelegate?
-
+    
     private var requestUrl = "https://api.storytel.net/search?query=harry"
 
     mutating func fetchBookcaseInfo(nextPageToken: String?) {
@@ -57,14 +57,24 @@ struct BookcaseManager {
             var books = [Book]()
             decodedData.items.forEach { (item) in
                 let title = item.title
-                let author = item.authors.map{$0.name}.joined(separator: ", ")
-                let narrator = item.narrators.map{$0.name}.joined(separator: ", ")
+                var author = item.authors.map{$0.name}.joined(separator: ", ")
+                var narrator = item.narrators.map{$0.name}.joined(separator: ", ")
                 let coverUrl = item.cover.url
                 let nextPageToken = decodedData.nextPageToken
-                let book = Book(title: title, author: author, narrator: narrator, coverUrl: coverUrl, nextPageToken: nextPageToken)
+                let query = decodedData.query
+                
+                if author.count > 0 {
+                    author = "By: \(author)"
+                }
+                if narrator.count > 0 {
+                    narrator = "With: \(narrator)"
+                }
+                
+                let book = Book(title: title, author: author, narrator: narrator, coverUrl: coverUrl, query: query, nextPageToken: nextPageToken)
                 books.append(book)
             }
             return books
+            
         }catch{
             delegate?.didFailWithError(error: error)
             return nil
