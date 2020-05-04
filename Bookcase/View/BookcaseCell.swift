@@ -11,7 +11,8 @@ import UIKit
 class BookcaseCell: UITableViewCell {
     
     static let reuseIdentifier = "BookcaseCell"
-
+    static let height = CGFloat(120.0)
+    
     let cover: UIImageView = {
         let coverImage = UIImageView()
         coverImage.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +25,7 @@ class BookcaseCell: UITableViewCell {
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = UIFont.boldSystemFont(ofSize: 21.0)
         title.numberOfLines = 1
+        title.lineBreakMode = .byTruncatingTail
         return title
     }()
     
@@ -33,6 +35,7 @@ class BookcaseCell: UITableViewCell {
         author.font = UIFont.systemFont(ofSize: 17.0)
         author.textColor = .gray
         author.numberOfLines = 1
+        author.lineBreakMode = .byTruncatingTail;
         return author
     }()
     
@@ -42,6 +45,7 @@ class BookcaseCell: UITableViewCell {
         narrator.font = UIFont.systemFont(ofSize: 17.0)
         narrator.textColor = .gray
         narrator.numberOfLines = 1
+        narrator.lineBreakMode = .byTruncatingTail;
         return narrator
     }()
     
@@ -49,6 +53,10 @@ class BookcaseCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addContentView()
         autoLayout()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func addContentView() {
@@ -80,8 +88,11 @@ class BookcaseCell: UITableViewCell {
             narrator.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    func configureWithModel(book: Book) {
+        cover.loadImage(urlString: book.coverUrl)
+        title.text = book.title
+        author.text = book.author
+        narrator.text = book.narrator
     }
 }

@@ -11,12 +11,12 @@ import UIKit
 class BookcaseViewController: UIViewController {
 
     private var books = [Book]()
-    private var manager = BookcaseManager()
+    private var serviceManager = BookcaseServiceManager()
     private let bookcaseView = BookcaseView()
     private let headerView = BookcaseHeaderView()
     private var nextPageToken: String?
     private var isLoading = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -27,19 +27,18 @@ class BookcaseViewController: UIViewController {
     private func configure() {
         bookcaseView.tableView.dataSource = self
         bookcaseView.tableView.delegate = self
-        manager.delegate = self
+        serviceManager.delegate = self
     }
     
     private func addSubViews() {
         view = bookcaseView
         view.addSubview(headerView)
-        
     }
     
     private func fetchBookcaseInfo() {
         if !isLoading {
             isLoading = true
-            manager.fetchBookcaseInfo(nextPageToken: nextPageToken)
+            serviceManager.fetchBookcaseInfo(nextPageToken: nextPageToken)
         }
     }
 }
@@ -55,50 +54,39 @@ extension BookcaseViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = books.count - 1
-        if !isLoading && indexPath.row == lastElement || lastElement < 0{
+        if !isLoading && indexPath.row == lastElement{
             fetchBookcaseInfo()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 120
-        } else {
-            return isLoading ? 80:0
+        if indexPath.row == books.count {
+            return isLoading ? SpinnerCell.height : 0
         }
+        
+        return BookcaseCell.height
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return books.count
-        } else if section == 1 {
-            return 1
-        } else {
-            return 0
-        }
+        return books.count + 1
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int { return 2 }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: BookcaseCell.reuseIdentifier, for: indexPath) as! BookcaseCell
-            cell.cover.load(url: URL(string: books[indexPath.row].coverUrl)!)
-            cell.title.text = books[indexPath.row].title
-            cell.author.text = books[indexPath.row].author
-            cell.narrator.text = books[indexPath.row].narrator
-            return cell
-        } else {
+        if indexPath.row == books.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: SpinnerCell.reuseIdentifier, for: indexPath) as! SpinnerCell
-            isLoading ? cell.spinner.startAnimating() : cell.spinner.stopAnimating()
+            cell.startSpin(isLoading)
             return cell
         }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: BookcaseCell.reuseIdentifier, for: indexPath) as! BookcaseCell
+        cell.configureWithModel(book: books[indexPath.row])
+        return cell
         
     }
 }
 
-extension BookcaseViewController: BookcaseManagerDelegate {
+extension BookcaseViewController: BookcaseServiceManagerDelegate {
     
     func didFailWithError(error: Error) {
         DispatchQueue.main.async {
@@ -107,18 +95,18 @@ extension BookcaseViewController: BookcaseManagerDelegate {
         }
     }
     
-    func didUpdateBookcase(_ bookcaseManager: BookcaseManager, books: [Book]?) {
-        
+    func didUpdateBookcase(_ bookcaseManager: BookcaseServiceManager, books: [Book]?) {
         if let books = books {
+            if self.books.count > 0 {
+                sleep(2)
+            }
             DispatchQueue.main.async {
+                self.isLoading = false
                 self.books += books
                 self.bookcaseView.tableView.reloadData()
-                self.headerView.cover.load(url: URL(string: books[books.endIndex-1].coverUrl)!)
-                self.headerView.title.text = "Query : \(books[books.startIndex].query)"
-                self.nextPageToken = books[books.endIndex-1].nextPageToken
-                self.isLoading = false
+                self.nextPageToken = books[books.startIndex].nextPageToken
+                self.headerView.configureWithData(book: books[books.startIndex])
             }
         }
-        
     }
 }

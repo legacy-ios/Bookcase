@@ -8,17 +8,17 @@
 
 import Foundation
 
-protocol BookcaseManagerDelegate {
-    func didUpdateBookcase(_ bookcaseManager: BookcaseManager, books: [Book]?)
+protocol BookcaseServiceManagerDelegate {
+    func didUpdateBookcase(_ bookcaseManager: BookcaseServiceManager, books: [Book]?)
     func didFailWithError(error: Error)
 }
 
-struct BookcaseManager {
+struct BookcaseServiceManager {
     
-    var delegate: BookcaseManagerDelegate?
+    var delegate: BookcaseServiceManagerDelegate?
     
     private var requestUrl = "https://api.storytel.net/search?query=harry"
-
+    
     mutating func fetchBookcaseInfo(nextPageToken: String?) {
         if let token = nextPageToken {
             requestUrl.append("&page=\(token)")
@@ -27,7 +27,6 @@ struct BookcaseManager {
     }
     
     private func performRequest(with urlString: String) {
-        
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             let urlSession = URLSession(configuration: .default)
@@ -50,7 +49,7 @@ struct BookcaseManager {
         }
     }
     
-   private func parseJSON(_ bookData: Data) -> [Book]? {
+    private func parseJSON(_ bookData: Data) -> [Book]? {
         let decoder = JSONDecoder()
         do{
             let decodedData = try decoder.decode(BookData.self, from: bookData)
@@ -62,14 +61,12 @@ struct BookcaseManager {
                 let coverUrl = item.cover.url
                 let nextPageToken = decodedData.nextPageToken
                 let query = decodedData.query
-                
                 if author.count > 0 {
                     author = "By: \(author)"
                 }
                 if narrator.count > 0 {
                     narrator = "With: \(narrator)"
                 }
-                
                 let book = Book(title: title, author: author, narrator: narrator, coverUrl: coverUrl, query: query, nextPageToken: nextPageToken)
                 books.append(book)
             }
@@ -79,7 +76,36 @@ struct BookcaseManager {
             delegate?.didFailWithError(error: error)
             return nil
         }
-        
     }
+}
 
+
+/**
+ clouer style 
+ */
+extension BookcaseServiceManager {
+    enum NetworkError: Error {
+        case badURL, requestFailed, unknown
+    }
+    mutating func fetchBookcaseInfo(withNextPageToken token: String?, completion: @escaping (Result<[Book]?, NetworkError>) -> Void) {
+        
+        if let token = token {
+            requestUrl.append("&page=\(token)")
+        }
+        
+        guard let url = URL(string: requestUrl) else {
+            completion(.failure(.badURL))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { [self] data, response, error in
+            if let safeData = data, let books = self.parseJSON(safeData) {
+                completion(.success(books))
+            } else if error != nil {
+                completion(.failure(.requestFailed))
+            } else {
+                completion(.failure(.unknown))
+            }
+        }.resume()
+    }
 }

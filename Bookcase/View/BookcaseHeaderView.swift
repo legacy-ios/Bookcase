@@ -10,6 +10,8 @@ import UIKit
 
 class BookcaseHeaderView: UIView {
 
+    private let guardHeaderMinimumHeight = CGFloat.zero
+    
     let title: UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +34,7 @@ class BookcaseHeaderView: UIView {
     private let blurView: UIVisualEffectView = {
         let blurView = UIVisualEffectView()
         blurView.translatesAutoresizingMaskIntoConstraints = false
-        blurView.effect = UIBlurEffect.init(style: UIBlurEffect.Style.systemMaterialDark)
+        blurView.effect = UIBlurEffect.init(style: UIBlurEffect.Style.dark)
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return blurView
     }()
@@ -74,7 +76,15 @@ class BookcaseHeaderView: UIView {
     
     func stretchHeight(_ scrollView: UIScrollView){
         let y = 300 - (scrollView.contentOffset.y + 300)
-        let height = min(max(y,100),440)
+        let height = min(max(y,CGFloat.zero),400)
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: height)
+        UIView.animate(withDuration: 0.4) {
+            self.title.isHidden = height <= CGFloat.zero
+        }
+    }
+    
+    func configureWithData(book: Book) {
+        title.text = "Query : \(book.query)"
+        cover.loadImage(urlString: book.coverUrl)
     }
 }

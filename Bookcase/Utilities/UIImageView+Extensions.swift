@@ -13,18 +13,18 @@ extension UIImageView {
     struct ImageCache {
         static let cache = NSCache<AnyObject, AnyObject>()
     }
-    
-    func load(url: URL) {
-        if let imageFromCache = ImageCache.cache.object(forKey: url.absoluteURL as AnyObject) {
+
+    func loadImage(urlString: String) {
+        if let imageFromCache = ImageCache.cache.object(forKey: urlString as AnyObject) {
             image = imageFromCache as? UIImage
             return
         }
         DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
+            if let url = URL(string: urlString), let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.image = image
-                        ImageCache.cache.setObject(image, forKey: url.absoluteURL as AnyObject)
+                        ImageCache.cache.setObject(image, forKey: url.absoluteString as AnyObject)
                     }
                 }
             }

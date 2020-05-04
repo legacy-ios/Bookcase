@@ -16,15 +16,14 @@ struct BookData: Codable {
 
 struct Item: Codable {
     let title: String
-    let authors, narrators: [Common]
+    let authors, narrators: [Language]
     let cover: Cover
-    
     enum CodingKeys: String, CodingKey {
         case title, authors, narrators, cover
     }
 }
 
-struct Common: Codable {
+struct Language: Codable {
     let id, name: String
 }
 

@@ -38,16 +38,6 @@
                ReferencedContainer = "container:Bookcase.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B0C7FFE2459731A002BE7CF"
-               BuildableName = "BookcaseUITests.xctest"
-               BlueprintName = "BookcaseUITests"
-               ReferencedContainer = "container:Bookcase.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

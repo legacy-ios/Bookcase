@@ -12,8 +12,9 @@ class BookcaseView: UIView {
     
     let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.tableFooterView = UIView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = 120
+        tableView.rowHeight = BookcaseCell.height
         tableView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
         tableView.register(BookcaseCell.self, forCellReuseIdentifier: BookcaseCell.reuseIdentifier)
         tableView.register(SpinnerCell.self, forCellReuseIdentifier: SpinnerCell.reuseIdentifier)

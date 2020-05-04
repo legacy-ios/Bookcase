@@ -11,8 +11,9 @@ import UIKit
 class SpinnerCell: UITableViewCell {
     
     static let reuseIdentifier = "SpinnerCell"
-
-    let spinner = UIActivityIndicatorView()
+    static let height = CGFloat(60.0)
+    
+    private let spinner = UIActivityIndicatorView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,6 +27,7 @@ class SpinnerCell: UITableViewCell {
     
     private func configureContents() {
         spinner.translatesAutoresizingMaskIntoConstraints = false
+        self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
         contentView.backgroundColor = .clear
         contentView.addSubview(spinner)
     }
@@ -35,6 +37,10 @@ class SpinnerCell: UITableViewCell {
             spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
+    }
+    
+    func startSpin(_ isLoading: Bool) {
+        isLoading ? spinner.startAnimating() : spinner.stopAnimating()
     }
 
 }
