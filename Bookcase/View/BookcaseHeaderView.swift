@@ -27,7 +27,7 @@ class BookcaseHeaderView: UIView {
         corver.translatesAutoresizingMaskIntoConstraints = false
         corver.contentMode = .scaleAspectFill
         corver.clipsToBounds = true
-        corver.backgroundColor = .lightGray
+        corver.backgroundColor = .white
         return corver
     }()
     

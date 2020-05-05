@@ -97,9 +97,6 @@ extension BookcaseViewController: BookcaseServiceManagerDelegate {
     
     func didUpdateBookcase(_ bookcaseManager: BookcaseServiceManager, books: [Book]?) {
         if let books = books {
-            if self.books.count > 0 {
-                sleep(2) //Fake background loading task for 2 seconds
-            }
             DispatchQueue.main.async {
                 self.isLoading = false
                 self.books += books
