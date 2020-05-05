@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Book: Decodable {
+struct Book: Codable {
     let title: String
     let author: String
     let narrator: String

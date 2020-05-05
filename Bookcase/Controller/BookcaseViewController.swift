@@ -10,11 +10,11 @@ import UIKit
 
 class BookcaseViewController: UIViewController {
 
-    private var books = [Book]()
-    private var serviceManager = BookcaseServiceManager()
-    private let bookcaseView = BookcaseView()
-    private let headerView = BookcaseHeaderView()
-    private var nextPageToken: String?
+    var books = [Book]()
+    var serviceManager = BookcaseServiceManager()
+    let bookcaseView = BookcaseView()
+    let headerView = BookcaseHeaderView()
+    internal var nextPageToken: String?
     private var isLoading = false
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class BookcaseViewController: UIViewController {
         view.addSubview(headerView)
     }
     
-    private func fetchBookcaseInfo() {
+    internal func fetchBookcaseInfo() {
         if !isLoading {
             isLoading = true
             serviceManager.fetchBookcaseInfo(nextPageToken: nextPageToken)
@@ -98,7 +98,7 @@ extension BookcaseViewController: BookcaseServiceManagerDelegate {
     func didUpdateBookcase(_ bookcaseManager: BookcaseServiceManager, books: [Book]?) {
         if let books = books {
             if self.books.count > 0 {
-                sleep(2)
+                sleep(2) //Fake background loading task for 2 seconds
             }
             DispatchQueue.main.async {
                 self.isLoading = false

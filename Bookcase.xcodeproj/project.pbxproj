@@ -12,7 +12,6 @@
 		4B0C7FE624597317002BE7CF /* BookcaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C7FE524597317002BE7CF /* BookcaseViewController.swift */; };
 		4B0C7FEB2459731A002BE7CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B0C7FEA2459731A002BE7CF /* Assets.xcassets */; };
 		4B0C7FEE2459731A002BE7CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0C7FEC2459731A002BE7CF /* LaunchScreen.storyboard */; };
-		4B0C7FF92459731A002BE7CF /* BookcaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C7FF82459731A002BE7CF /* BookcaseTests.swift */; };
 		4B0C80192459B6F1002BE7CF /* BookcaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C80182459B6F1002BE7CF /* BookcaseCell.swift */; };
 		4B0C801C2459EC11002BE7CF /* BookcaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C801B2459EC11002BE7CF /* BookcaseHeaderView.swift */; };
 		4B0C801F2459FAB2002BE7CF /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C801E2459FAB2002BE7CF /* UIImageView+Extensions.swift */; };
@@ -21,6 +20,8 @@
 		4B0C8026245A2631002BE7CF /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8025245A2631002BE7CF /* BookData.swift */; };
 		4B0C802E245B515A002BE7CF /* BookcaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C802D245B515A002BE7CF /* BookcaseView.swift */; };
 		4B4E4830245F2073000F1FBD /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4E482F245F2073000F1FBD /* ViewController+Extension.swift */; };
+		4B4E48362460837D000F1FBD /* BookcaseViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4E48352460837D000F1FBD /* BookcaseViewControllerTests.swift */; };
+		4B4E48382460A5A1000F1FBD /* BookcaseServiceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4E48372460A5A1000F1FBD /* BookcaseServiceManagerTests.swift */; };
 		4BCEAD32245E13B00082870C /* SpinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCEAD31245E13B00082870C /* SpinnerCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,9 +51,8 @@
 		4B0C7FED2459731A002BE7CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B0C7FEF2459731A002BE7CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B0C7FF42459731A002BE7CF /* BookcaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookcaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B0C7FF82459731A002BE7CF /* BookcaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseTests.swift; sourceTree = "<group>"; };
 		4B0C7FFA2459731A002BE7CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B0C7FFF2459731A002BE7CF /* .. */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ..; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B0C7FFF2459731A002BE7CF /* .. */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ..; path = BookcaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0C80182459B6F1002BE7CF /* BookcaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseCell.swift; sourceTree = "<group>"; };
 		4B0C801B2459EC11002BE7CF /* BookcaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseHeaderView.swift; sourceTree = "<group>"; };
 		4B0C801E2459FAB2002BE7CF /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -61,6 +61,8 @@
 		4B0C8025245A2631002BE7CF /* BookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		4B0C802D245B515A002BE7CF /* BookcaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseView.swift; sourceTree = "<group>"; };
 		4B4E482F245F2073000F1FBD /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		4B4E48352460837D000F1FBD /* BookcaseViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseViewControllerTests.swift; sourceTree = "<group>"; };
+		4B4E48372460A5A1000F1FBD /* BookcaseServiceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookcaseServiceManagerTests.swift; sourceTree = "<group>"; };
 		4BCEAD31245E13B00082870C /* SpinnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,8 +125,9 @@
 		4B0C7FF72459731A002BE7CF /* BookcaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				4B0C7FF82459731A002BE7CF /* BookcaseTests.swift */,
 				4B0C7FFA2459731A002BE7CF /* Info.plist */,
+				4B4E48352460837D000F1FBD /* BookcaseViewControllerTests.swift */,
+				4B4E48372460A5A1000F1FBD /* BookcaseServiceManagerTests.swift */,
 			);
 			path = BookcaseTests;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 					};
 					4B0C7FF32459731A002BE7CF = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 						TestTargetID = 4B0C7FDD24597317002BE7CF;
 					};
 					4B0C7FFE2459731A002BE7CF = {
@@ -336,7 +340,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B0C7FF92459731A002BE7CF /* BookcaseTests.swift in Sources */,
+				4B4E48382460A5A1000F1FBD /* BookcaseServiceManagerTests.swift in Sources */,
+				4B4E48362460837D000F1FBD /* BookcaseViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +536,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G7Y922S93U;
 				INFOPLIST_FILE = BookcaseTests/Info.plist;
@@ -542,6 +548,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = home.assignment.storytel.BookcaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bookcase.app/Bookcase";
@@ -553,6 +560,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G7Y922S93U;
 				INFOPLIST_FILE = BookcaseTests/Info.plist;
