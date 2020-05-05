@@ -54,6 +54,19 @@ class BookcaseViewControllerTests: XCTestCase {
         XCTAssertNotNil(expectationNextPageToken)
     }
     
+    func testQuaryIsIncludedWhenFetchAPI() {
+        expectation = expectation(description: "wait for quary")
+        sut.serviceManager.delegate = self
+        sut.fetchBookcaseInfo()
+        waitForExpectations(timeout: 5) { (error) in
+            if let error = error {
+                XCTFail(error.localizedDescription)
+            }
+        }
+        let expectationQuary = result[0].query
+        XCTAssertEqual(expectationQuary, "harry")
+    }
+    
     func testCellShouldContainAbookCoverImage() {
         cell.cover.loadImage(urlString: "https://www.storytel.se/images/9783732005932/640x640/cover.jpg")
         
@@ -78,12 +91,33 @@ class BookcaseViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.narrator.text,"narrator name is test")
     }
     
+    /**
+    
+     I wnated pass this unit test but I could not complete this unit test.
+     How can I pass this this unit test ?
+    
+    func testWhenFetchDataItShoudBeAppend() {
+        expectation = expectation(description: "Append new data")
+        sut.serviceManager.delegate = self
+        sut.books = [Book]()
+        expectation.expectedFulfillmentCount = 2
+        wait(for: [expectation], timeout: 10)
+        sut.fetchBookcaseInfo()
+        waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertEqual(sut.books.count, 10)
+        sleep(3)
+        sut.fetchBookcaseInfo()
+        waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertEqual(sut.books.count, 20)
+    }*/
+    
 }
 
 extension BookcaseViewControllerTests: BookcaseServiceManagerDelegate {
     func didUpdateBookcase(_ bookcaseManager: BookcaseServiceManager, books: [Book]?) {
         if let books = books {
             result = books
+            sut.books.append(contentsOf: books)
         }
         expectation.fulfill()
     }
