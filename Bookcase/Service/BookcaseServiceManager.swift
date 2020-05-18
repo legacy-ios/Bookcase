@@ -81,7 +81,7 @@ struct BookcaseServiceManager {
 
 
 /**
- clouer style 
+ closuer style
  */
 extension BookcaseServiceManager {
     enum NetworkError: Error {

@@ -15,6 +15,11 @@ extension UIImageView {
     }
 
     func loadImage(urlString: String) {
+        
+        if self.image != nil {
+            self.image = nil
+        }
+        
         if let imageFromCache = ImageCache.cache.object(forKey: urlString as AnyObject) {
             image = imageFromCache as? UIImage
             return
